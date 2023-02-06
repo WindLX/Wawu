@@ -1,0 +1,7 @@
+{
+    "send_email": "1284160932@qq.com",
+    "get_email": "1418043337@qq.com",
+    "author_code": "osvbgomzecctffch",
+    "send_name": "wawu",
+    "template_path": "./Resources/Templates/Email.html"
+}

@@ -1,0 +1,100 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>来自 Wawu 的消息</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #efefef;
+            min-height: 500px;
+            height: 100%;
+            width: 100%;
+        }
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            width: 300px;
+            margin: 20px;
+            border-radius: 20px;
+        }
+        .header img {
+            border-radius: 50%;
+            width: 80px;
+            margin: 10px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #fff;
+            width: 300px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            min-height: 200px;
+        }
+        .card {
+            display: flex;
+            align-items: center;
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-top: 30px;
+        }
+        .card img {
+            width: 30px;
+            margin-left: 30px;
+            margin-right: 10px;
+        }
+        #card1 {
+            margin-top: 20px;
+        }
+        .content p {
+            margin: 0;
+            margin-top: 8px;
+            margin-left: 100px;
+            font-size: 14px;
+        }
+        h4 {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .header h4 {
+            margin-bottom: 20px;
+        }
+        #bottom {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="cid:pic0" alt="">
+            <h4>来自 Wawu</h4>
+        </div>
+        <div class="content">
+            <div class="card" id="card1">
+                <img src="cid:pic1" alt="">
+                <h4>待办事项提醒</h4>
+            </div>
+            <div class="card" id="card2">
+                <img src="cid:pic2" alt="">
+                <h4>事项内容</h4>
+            </div>
+            <p>{{ content }}</p>
+            <div class="card" id="card3">
+                <img src="cid:pic3" alt="">
+                <h4>结束时间</h4>
+            </div>
+            <p id="bottom">{{ time }}</p>
+        </div>
+    </div>
+</body>
+</html>
