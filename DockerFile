@@ -1,0 +1,12 @@
+FROM python:3.9.13
+WORKDIR /Wawu/server
+COPY requirements.txt .
+RUN pip install -r ./requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+COPY ./Backend ./Backend
+COPY ./Data ./Data
+COPY ./Log ./Log
+COPY ./Resources ./Resources
+
+EXPOSE 8080
+
+CMD ["python", "./Backend/run.py"]
