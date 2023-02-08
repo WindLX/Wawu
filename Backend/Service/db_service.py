@@ -3,7 +3,8 @@ from abc import ABCMeta, abstractclassmethod
 
 from Model import DBModel, TodoModel, ConditionModelBase, TodoConditionModel
 
-class DataBaseService(metaclass=ABCMeta):
+
+class DBService(metaclass=ABCMeta):
     def __init__(self) -> None:
         self.database: str = "./Data/wawu.db"
     
@@ -16,7 +17,7 @@ class DataBaseService(metaclass=ABCMeta):
         self.database_conn.commit()
         self.database_conn.close()
         if exec_tb:
-            logging.error(f"数据库关闭异常(Type: {exec_type}, Value: {exec_value}, Traceback: {exec_tb})")
+            logging.critical(f"数据库关闭异常(Type: {exec_type}, Value: {exec_value}, Traceback: {exec_tb})")
             logging.getLogger("server").error(f"数据库关闭异常(Type: {exec_type}, Value: {exec_value}, Traceback: {exec_tb})")
     
     @abstractclassmethod
@@ -35,12 +36,12 @@ class DataBaseService(metaclass=ABCMeta):
     def query(self, condition: ConditionModelBase=None) -> list[DBModel]:
         pass
     
-class TodoService(DataBaseService):
+class TodoService(DBService):
     
     def add(self, new_data: TodoModel) -> bool:
         sql = f"INSERT INTO [TodoList] VALUES(?, ?, ?, ?)"
         try:
-            self.cursor.execute(sql, new_data.serialize())
+            self.cursor.execute(sql, new_data.tuple())
             logging.info(f"添加新 Todo 成功({new_data.message})")
             logging.getLogger("server").info(f"添加新 Todo 成功({new_data.message})")
             return True
@@ -64,7 +65,7 @@ class TodoService(DataBaseService):
     def update(self, target_data_timeID: str, new_data: TodoModel) -> bool:
         sql = f"UPDATE [TodoList] SET [Done] = ?, [Message] = ?, [EndTime] = ? WHERE [TimeID] = ?"
         try:
-            self.cursor.execute(sql, new_data.serialize()[1:] + (target_data_timeID, ))
+            self.cursor.execute(sql, new_data.tuple()[1:] + (target_data_timeID, ))
             logging.info(f"更改 Todo 成功({target_data_timeID}, {new_data.message})")
             logging.getLogger("server").info(f"更改 Todo 成功({target_data_timeID}, {new_data.message})")
             return True
@@ -77,13 +78,13 @@ class TodoService(DataBaseService):
         sql = f"SELECT * FROM [TodoList]"
         try:
             if condition is not None:
-                if any(condition.serialize()):
+                if any(condition.tuple()):
                     sql = sql + " WHERE "
                     if condition.done is not None:
                         sql = sql + "[Done] = :done"
-                        if all(condition.serialize()[1:]):
+                        if all(condition.tuple()[1:]):
                             sql = sql + " AND [EndTime] >= :startTime AND [EndTime] <= :endTime"
-                    elif all(condition.serialize()[1:]):
+                    elif all(condition.tuple()[1:]):
                         sql = sql + "[EndTime] >= :startTime AND [EndTime] <= :endTime"
                 self.cursor.execute(sql, condition.dict())
             else:

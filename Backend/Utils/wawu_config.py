@@ -4,6 +4,7 @@ from Utils import ConfigType
 
 import yaml
 
+
 class WawuConfig:
     def __init__(self, config_path: str, config_type: ConfigType) -> None:
         self.config_path = config_path

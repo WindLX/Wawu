@@ -1,6 +1,7 @@
 from jinja2 import Environment, FileSystemLoader
 
-class EmailModel():
+
+class EmailModel:
     def __init__(self, config: dict[str, str]) -> None:
         self.send_email = config["send_email"]
         self.get_email = config["get_email"]
@@ -12,4 +13,13 @@ class EmailModel():
         env = Environment(loader=FileSystemLoader("./"))
         template = env.get_template(self.template_path)
         return template.render(contents)
+    
+    def dict(self) -> dict:
+        return dict(
+            send_email=self.send_email,
+            get_email=self.get_email,
+            author_code=self.author_code,
+            send_name=self.send_name,
+            template_path=self.template_path
+        )
         

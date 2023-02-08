@@ -1,13 +1,13 @@
 import logging
-
-from Model import EmailModel
-from Utils import ConfigType, WawuConfig
-
 from smtplib import SMTP, SMTPException
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
+
+from Model import EmailModel
+from Utils import ConfigType, WawuConfig
+
 
 class EmailService:
     
