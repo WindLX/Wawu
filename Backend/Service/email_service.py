@@ -9,7 +9,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 
-class EmailServer:
+class EmailService:
     
     def __init__(self) -> None:
         self.email_model: EmailModel = EmailModel(WawuConfig("./Data/EmailConfig.json", ConfigType.json).get_config())
