@@ -1,8 +1,8 @@
 import datetime
 
-from Service import EmailService, TodoService
-from Model import TodoConditionModel
-from Utils import WawuConfig, ConfigType
+from Lib.Service import EmailService, TodoService
+from Lib.Model import TodoConditionModel
+from Lib.Utils import WawuConfig, ConfigType
 
 
 def auto_send_email():

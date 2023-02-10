@@ -1,6 +1,6 @@
 import json
 
-from Utils import ConfigType
+from Lib.Utils import ConfigType
 
 import yaml
 

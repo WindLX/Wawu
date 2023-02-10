@@ -1,7 +1,7 @@
 import logging
 import logging.config
 
-from Utils import ConfigType, WawuConfig
+from Lib.Utils import ConfigType, WawuConfig
 
 
 def logger_init():

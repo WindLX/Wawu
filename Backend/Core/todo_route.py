@@ -1,8 +1,8 @@
 import logging
 from time import time
 
-from Service import TodoService
-from Model import TodoModel, TodoConditionModel
+from Lib.Service import TodoService
+from Lib.Model import TodoModel, TodoConditionModel
 
 from flask import request, Blueprint
 

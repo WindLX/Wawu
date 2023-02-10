@@ -1,6 +1,6 @@
 from Core.jobs import *
 from Core.todo_route import todo
-from Utils.wawu_logger import logger_init
+from Lib.Utils.wawu_logger import logger_init
 
 from flask import Flask
 from flask_cors import *
